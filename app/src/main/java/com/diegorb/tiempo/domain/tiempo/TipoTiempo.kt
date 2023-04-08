@@ -1,4 +1,4 @@
-package com.diegorb.tiempo.domain.weather
+package com.diegorb.tiempo.domain.tiempo
 
 import androidx.annotation.DrawableRes
 import com.diegorb.tiempo.R
