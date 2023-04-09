@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 //Model Tiempo
 data class TiempoData(
-    val hora: LocalDateTime,
+    val time: LocalDateTime,
     val temperaturaCelsius: Double,
     val presionHPA: Double,
     val velocidadVientoKMH: Double,

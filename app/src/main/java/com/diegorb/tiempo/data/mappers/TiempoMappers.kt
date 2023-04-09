@@ -19,7 +19,7 @@ private data class IndexedTiempoData(
 //Mapea el objeto TiempoDataDTO de la capa data, al objeto TiempoData de la capa domain
 @RequiresApi(Build.VERSION_CODES.O)
 fun TiempoDataDto.toTiempoDataMap(): Map<Int, List<TiempoData>>{
-    return hora.mapIndexed{ index, hora ->
+    return time.mapIndexed{ index, hora ->
         val temperatura = temperatura[index]
         val codigoTiempo = codigoTiempo[index]
         val velocidadViento = velocidadViento[index]
@@ -28,7 +28,7 @@ fun TiempoDataDto.toTiempoDataMap(): Map<Int, List<TiempoData>>{
         IndexedTiempoData(
             index = index,
             data = TiempoData(
-                hora = LocalDateTime.parse(hora, DateTimeFormatter.ISO_DATE_TIME),
+                time = LocalDateTime.parse(hora, DateTimeFormatter.ISO_DATE_TIME),
                 temperaturaCelsius = temperatura,
                 presionHPA = presion,
                 velocidadVientoKMH = velocidadViento,
@@ -49,20 +49,14 @@ fun TiempoDataDto.toTiempoDataMap(): Map<Int, List<TiempoData>>{
 @RequiresApi(Build.VERSION_CODES.O)
 fun TiempoDto.toTiempoInfo(): TiempoInfo {
     val tiempoDataMap = tiempoData.toTiempoDataMap()
-    val actual = LocalDateTime.now()
+    val current = LocalDateTime.now()
     val actualTiempoData = tiempoDataMap[0]?.find {
         //Asigna el rango de hora de la API mas cercana a la hora actual
-        val horaActual = when{
-            actual.minute < 30 -> actual.hour
-            actual.hour == 23 && actual.minute > 30 -> 0.00 //En caso de que sean las 23:45 usará el rango de las 12am
-            else -> actual.hour + 1
-        }
-        it.hora.hour == horaActual
+        val hora = if(current.minute < 30) current.hour else current.hour + 1
+        it.time.hour == hora
     }
     return TiempoInfo(
         tiempoDataPorDia = tiempoDataMap,
         tiempoActualData = actualTiempoData,
-
     )
-
 }

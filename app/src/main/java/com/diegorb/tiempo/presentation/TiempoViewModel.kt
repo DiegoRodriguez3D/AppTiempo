@@ -35,6 +35,7 @@ class TiempoViewModel @Inject constructor(
                             error = null
                         )
                     }
+
                     is Resource.Error -> {
                         state = state.copy(
                             tiempoInfo = null,
