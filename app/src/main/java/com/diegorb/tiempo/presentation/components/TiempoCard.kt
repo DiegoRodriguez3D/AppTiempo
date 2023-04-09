@@ -73,7 +73,7 @@ fun TiempoCard(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = "$data.tipoTiempo.tiempoDesc",
+                    text = "${data.tipoTiempo.tiempoDesc}",
                     color = Color.White,
                     fontSize = 20.sp
                 )
