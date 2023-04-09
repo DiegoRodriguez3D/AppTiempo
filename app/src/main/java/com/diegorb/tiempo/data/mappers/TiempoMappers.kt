@@ -51,8 +51,12 @@ fun TiempoDto.toTiempoInfo(): TiempoInfo {
     val tiempoDataMap = tiempoData.toTiempoDataMap()
     val actual = LocalDateTime.now()
     val actualTiempoData = tiempoDataMap[0]?.find {
-        //Asigna la hora de la API mas cercana a la hora actual
-        val horaActual = if(actual.minute < 30) actual.hour else actual.hour + 1
+        //Asigna el rango de hora de la API mas cercana a la hora actual
+        val horaActual = when{
+            actual.minute < 30 -> actual.hour
+            actual.hour == 23 && actual.minute > 30 -> 0.00 //En caso de que sean las 23:45 usará el rango de las 12am
+            else -> actual.hour + 1
+        }
         it.hora.hour == horaActual
     }
     return TiempoInfo(

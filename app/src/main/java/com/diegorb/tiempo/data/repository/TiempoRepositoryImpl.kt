@@ -6,17 +6,17 @@ import com.diegorb.tiempo.data.mappers.toTiempoInfo
 import com.diegorb.tiempo.data.remote.TiempoApi
 import com.diegorb.tiempo.domain.repository.TiempoRepository
 import com.diegorb.tiempo.domain.tiempo.TiempoInfo
-import com.diegorb.tiempo.domain.util.Recurso
+import com.diegorb.tiempo.domain.util.Resource
 import javax.inject.Inject
 
 class TiempoRepositoryImpl @Inject constructor(
     private val api: TiempoApi
 ): TiempoRepository {
     @RequiresApi(Build.VERSION_CODES.O)
-    override suspend fun getTiempoData(lat: Double, long: Double): Recurso<TiempoInfo> {
+    override suspend fun getTiempoData(lat: Double, long: Double): Resource<TiempoInfo> {
 
         return try {
-            Recurso.Exito(
+            Resource.Exito(
                 data = api.getTiempoData(
                     lat = lat,
                     long = long
@@ -25,7 +25,7 @@ class TiempoRepositoryImpl @Inject constructor(
 
         }catch (e:Exception){
             e.printStackTrace()
-            Recurso.Error(e.message ?: "Error desconocido")
+            Resource.Error(e.message ?: "Error desconocido")
         }
     }
 }
