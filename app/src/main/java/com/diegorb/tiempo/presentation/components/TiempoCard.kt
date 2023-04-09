@@ -17,7 +17,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.diegorb.tiempo.presentation.TiempoState
+import com.diegorb.tiempo.presentation.screens.tiempo.TiempoState
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 import com.diegorb.tiempo.R
@@ -33,6 +33,7 @@ fun TiempoCard(
         Card(
             backgroundColor = bgColor,
             shape = RoundedCornerShape(25.dp),
+            elevation = 0.dp,
             modifier = modifier.padding(10.dp)
         ) {
             Column(

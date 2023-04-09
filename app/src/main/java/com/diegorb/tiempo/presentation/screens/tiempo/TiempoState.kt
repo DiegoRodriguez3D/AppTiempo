@@ -1,4 +1,4 @@
-package com.diegorb.tiempo.presentation
+package com.diegorb.tiempo.presentation.screens.tiempo
 
 import com.diegorb.tiempo.domain.tiempo.TiempoInfo
 

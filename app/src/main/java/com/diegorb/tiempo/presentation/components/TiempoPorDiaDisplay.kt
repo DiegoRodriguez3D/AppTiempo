@@ -36,7 +36,7 @@ fun TiempoPorDiaDisplay(
     ) {
         Text(
             text = formatoHoras,
-            color = Color.LightGray
+            color = textColor
         )
         Image(
             painter = painterResource(id = tiempoData.tipoTiempo.iconRes) ,
@@ -45,7 +45,7 @@ fun TiempoPorDiaDisplay(
         )
         Text(
             text = "${tiempoData.temperaturaCelsius}ºC",
-            color = Color.LightGray,
+            color = textColor,
             fontWeight = FontWeight.Bold
         )
     }

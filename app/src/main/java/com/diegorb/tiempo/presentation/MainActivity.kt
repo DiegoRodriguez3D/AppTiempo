@@ -9,18 +9,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Text
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import com.diegorb.tiempo.presentation.components.TiempoCard
-import com.diegorb.tiempo.presentation.ui.theme.DarkBlue
-import com.diegorb.tiempo.presentation.ui.theme.DeepBlue
+import com.diegorb.tiempo.presentation.screens.tiempo.TiempoScreen
+import com.diegorb.tiempo.presentation.screens.tiempo.TiempoViewModel
 import com.diegorb.tiempo.presentation.ui.theme.TiempoTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,36 +37,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             TiempoTheme {
-                Box(
-                    modifier = Modifier.fillMaxSize()
-                ){
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(DarkBlue)
-                    ) {
-                        TiempoCard(
-                            state = viewModel.state,
-                            bgColor = DeepBlue)
-                        Spacer(modifier = Modifier.height(16.dp))
-                        TiempoForecast(state = viewModel.state)
-                    }
-
-                    if(viewModel.state.isLoading){
-                        CircularProgressIndicator(
-                            modifier = Modifier.align(Alignment.Center)
-                        )
-                    }
-
-                    viewModel.state.error?.let { error->
-                        Text(
-                            text = error,
-                            color = Color.Red,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.align(
-                            Alignment.Center))
-                    }
-                }
+                TiempoScreen()
             }
         }
     }
