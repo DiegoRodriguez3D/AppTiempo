@@ -36,7 +36,7 @@ fun MessageCard(
         elevation = 5.dp,
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(modifier = Modifier.padding(top = 8.dp), text = title, fontSize = 34.sp, fontWeight = FontWeight.Bold)
+            Text(modifier = Modifier.padding(top = 8.dp), text = title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
 
             Divider(
                 modifier = Modifier.padding(horizontal = 40.dp, vertical = 3.dp),
@@ -60,7 +60,7 @@ fun MessageCard(
                 Text(
                     text = msg,
                     color = textColor,
-                    textAlign = TextAlign.Justify,
+                    textAlign = TextAlign.Left,
                     modifier = Modifier
                         .padding(20.dp)
                 )

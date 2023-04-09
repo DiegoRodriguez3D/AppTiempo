@@ -2,7 +2,7 @@ package com.diegorb.tiempo.presentation.screens.tiempo.components
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.diegorb.tiempo.presentation.TiempoForecast
+import com.diegorb.tiempo.presentation.components.TiempoForecast
 import com.diegorb.tiempo.presentation.components.MessageCard
 import com.diegorb.tiempo.presentation.components.TiempoCard
 import com.diegorb.tiempo.presentation.screens.tiempo.TiempoViewModel
@@ -44,11 +44,13 @@ fun TiempoContent(
                     )
                 )
         ) {
-            TiempoCard(
-                state = viewModel.state,
-                bgColor = Color.Transparent)
-            Spacer(modifier = Modifier.height(16.dp))
-            TiempoForecast(state = viewModel.state)
+            Column(Modifier.verticalScroll(rememberScrollState())){
+                TiempoCard(
+                    state = viewModel.state,
+                    bgColor = Color.Transparent)
+                Spacer(modifier = Modifier.height(16.dp))
+                TiempoForecast(state = viewModel.state)
+            }
         }
 
         if(viewModel.state.isLoading){

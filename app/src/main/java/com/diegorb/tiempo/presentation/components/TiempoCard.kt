@@ -106,12 +106,7 @@ fun TiempoCard(
                         textStyle = TextStyle(color = Color.White)
                     )
                 }
-
-
-
-
             }
-
         }
     }
 }

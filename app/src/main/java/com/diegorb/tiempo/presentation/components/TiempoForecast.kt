@@ -1,13 +1,11 @@
-package com.diegorb.tiempo.presentation
+package com.diegorb.tiempo.presentation.components
 
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
@@ -17,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.diegorb.tiempo.presentation.components.TiempoPorDiaDisplay
 import com.diegorb.tiempo.presentation.screens.tiempo.TiempoState
 import com.diegorb.tiempo.presentation.ui.theme.DeepBlue
 import com.diegorb.tiempo.presentation.ui.theme.LightBlue
@@ -30,7 +27,6 @@ fun TiempoForecast(
 ){
     Column(
         Modifier
-            .verticalScroll(rememberScrollState())
             .padding(bottom = 50.dp)
     ) {
 
