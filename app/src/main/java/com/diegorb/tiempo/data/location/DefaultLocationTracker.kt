@@ -20,7 +20,7 @@ class DefaultLocationTracker @Inject constructor(
 
     override suspend fun getCurrentLocation(): Location? {
 
-        //Comprueba permisos necesarios para localización
+        //Comprueba permisos necesarios para la ubicación
         val hasAccessFineLocationPermission = ContextCompat.checkSelfPermission(
             aplication,
             Manifest.permission.ACCESS_FINE_LOCATION
@@ -31,7 +31,7 @@ class DefaultLocationTracker @Inject constructor(
             Manifest.permission.ACCESS_COARSE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
 
-        //Comprueba que la localización esté activada por parte del usuario
+        //Comprueba que la ubicación esté activada por parte del usuario
         val locationManager = aplication.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) || locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
 
@@ -39,7 +39,7 @@ class DefaultLocationTracker @Inject constructor(
             return null
         }
 
-        //Devuelve la localización del usuario y controla los casos en los que de error o se cancele la operacion
+        //Devuelve la ubicación del usuario y controla los casos en los que de error o se cancele la operacion
         return suspendCancellableCoroutine { cont->
             locationClient.lastLocation.apply {
                 if(isComplete){
@@ -61,10 +61,5 @@ class DefaultLocationTracker @Inject constructor(
                 }
             }
         }
-
-
-
     }
-
-
 }
