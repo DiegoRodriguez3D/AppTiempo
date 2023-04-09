@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -17,6 +18,8 @@ import com.diegorb.tiempo.presentation.TiempoForecast
 import com.diegorb.tiempo.presentation.components.TiempoCard
 import com.diegorb.tiempo.presentation.screens.tiempo.TiempoViewModel
 import com.diegorb.tiempo.presentation.ui.theme.DarkBlue
+import com.diegorb.tiempo.presentation.ui.theme.DeepBlue
+import com.diegorb.tiempo.presentation.ui.theme.LightBlue
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -29,7 +32,15 @@ fun TiempoContent(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(DarkBlue)
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            LightBlue,
+                            DarkBlue,
+                            DeepBlue
+                        ),
+                    )
+                )
         ) {
             TiempoCard(
                 state = viewModel.state,

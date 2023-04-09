@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.diegorb.tiempo.presentation.screens.tiempo.TiempoState
@@ -48,7 +49,7 @@ fun TiempoCard(
                             DateTimeFormatter.ofPattern("HH: mm")
                         )
                     }",
-                    modifier = Modifier.align(Alignment.End),
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
                     color = Color.White
                 )
 
@@ -65,13 +66,14 @@ fun TiempoCard(
                 Text(
                     text = "${data.temperaturaCelsius}ºC",
                     color = Color.White,
-                    fontSize = 50.sp
+                    fontSize = 50.sp,
+                    fontWeight = FontWeight.Bold
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = "${data.tipoTiempo.tiempoDesc}",
+                    text = "$data.tipoTiempo.tiempoDesc",
                     color = Color.White,
                     fontSize = 20.sp
                 )
