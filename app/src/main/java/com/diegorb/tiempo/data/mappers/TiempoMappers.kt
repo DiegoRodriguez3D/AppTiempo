@@ -19,7 +19,7 @@ private data class IndexedTiempoData(
 //Mapea el objeto TiempoDataDTO de la capa data, al objeto TiempoData de la capa domain
 @RequiresApi(Build.VERSION_CODES.O)
 fun TiempoDataDto.toTiempoDataMap(): Map<Int, List<TiempoData>>{
-    return time.mapIndexed{ index, hora ->
+    return time.mapIndexed{ index, time ->
         val temperatura = temperatura[index]
         val codigoTiempo = codigoTiempo[index]
         val velocidadViento = velocidadViento[index]
@@ -28,7 +28,7 @@ fun TiempoDataDto.toTiempoDataMap(): Map<Int, List<TiempoData>>{
         IndexedTiempoData(
             index = index,
             data = TiempoData(
-                time = LocalDateTime.parse(hora, DateTimeFormatter.ISO_DATE_TIME),
+                time = LocalDateTime.parse(time, DateTimeFormatter.ISO_DATE_TIME),
                 temperaturaCelsius = temperatura,
                 presionHPA = presion,
                 velocidadVientoKMH = velocidadViento,
@@ -38,7 +38,7 @@ fun TiempoDataDto.toTiempoDataMap(): Map<Int, List<TiempoData>>{
         )
 
     }.groupBy {
-        //La Api proporciona 24 valores por cada día (24h). Al dividir entre 24, nos dará un index por día de la semana
+        //La Api proporciona 24 valores por cada día (24h). Al dividir entre 24, agruparemos los datos por día
         it.index / 24
     }.mapValues {
         it.value.map { it.data }
@@ -52,8 +52,8 @@ fun TiempoDto.toTiempoInfo(): TiempoInfo {
     val current = LocalDateTime.now()
     val actualTiempoData = tiempoDataMap[0]?.find {
         //Asigna el rango de hora de la API mas cercana a la hora actual
-        val hora = if(current.minute < 30) current.hour else current.hour + 1
-        it.time.hour == hora
+        val time = if(current.minute < 30) current.hour else current.hour + 1
+        it.time.hour == time
     }
     return TiempoInfo(
         tiempoDataPorDia = tiempoDataMap,
